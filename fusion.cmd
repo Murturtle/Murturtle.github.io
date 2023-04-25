@@ -30,7 +30,7 @@ echo [INFO] proceding to download programs
 pause
 
 mkdir firefox
-xcopy "C:\Program Files (x86)\Mozilla Firefox" ".\firefox" /d
+xcopy "C:\Program Files (x86)\Mozilla Firefox" ".\firefox" /d /e
 cd firefox
 move firefox.exe a.exe
 
@@ -38,8 +38,8 @@ color a
 echo:
 echo [DONE] Setup complete! Press any key to open firefox and file explorer.
 pause
-start explorer "C:\Users\PhotonUser\My Files\Temporary Files"
+start /min explorer "C:\Users\PhotonUser\My Files\Temporary Files"
 cd firefox
-start a
+start /min a
 cd ..
 color
