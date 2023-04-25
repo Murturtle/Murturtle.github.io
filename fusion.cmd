@@ -9,7 +9,7 @@ echo [INFO] going into temp folder
 cd  "C:\Users\PhotonUser\My Files\Temporary Files"
 
 CHOICE /C YN /M "kill fusion?"
-IF %ERRORLEVEL% EQU 1 goto fusion
+IF %ERRORLEVEL% EQU 2 goto fusion
 
 echo [KILL] killing fusion...
 taskkill /f /im Fusion360.exe
