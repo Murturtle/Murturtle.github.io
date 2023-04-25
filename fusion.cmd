@@ -41,4 +41,5 @@ pause
 start explorer "C:\Users\PhotonUser\My Files\Temporary Files"
 cd firefox
 start a
+cd ..
 color
