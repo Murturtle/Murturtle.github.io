@@ -4,7 +4,7 @@ color f
 
 echo [INFO] Using murturtle's Fusion360 jailbreak
 
-echo [INFO] creating and going into folder
+echo [INFO] going into temp folder
 cd  "C:\Users\PhotonUser\My Files\Temporary Files"
 
 echo [KILL] killing fusion...
@@ -13,7 +13,7 @@ echo [INFO] killed fusion
 
 echo [KILL] killing Photon...
 taskkill /f /im PhotonWindowsCustomShell.exe
-taskkill /f /im PhotonAppSwitcher.exe
+taskkill /f /im PhotonWindowsAppSwitcher.exe
 taskkill /f /im PhotonWindowsCustomShellBackground.exe
 echo [INFO] killed PhotonCustomAgent
 echo [INFO] you can now minimize windows
@@ -23,6 +23,7 @@ IF %ERRORLEVEL% EQU 1 goto firefox
 IF %ERRORLEVEL% EQU 2 goto finished
 
 :firefox
+mkdir ff
 copy "C:\Program Files (x86)\Mozilla Firefox" ".\ff"
 cd ff
 move firefox.exe furryfox.exe
