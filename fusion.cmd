@@ -16,16 +16,6 @@ taskkill /f /im Fusion360.exe
 echo [INFO] killed fusion
 
 :fusion
-
-CHOICE /C YN /M "kill file explorer (recommended)"
-IF %ERRORLEVEL% EQU 2 goto expl
-
-echo [KILL] killing file explorer...
-taskkill /f /im explorer.exe
-echo [INFO] killed file explorer
-
-:expl
-
 echo:
 echo [KILL] killing Photon...
 taskkill /f /im PhotonWindowsCustomShell.exe
