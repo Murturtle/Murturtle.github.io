@@ -36,10 +36,11 @@ move firefox.exe a.exe
 color a
 cls
 echo:
-echo [DONE] Setup complete! Press any key to open firefox and file explorer.
+echo [DONE] Setup complete! Press any key to open firefox, file explorer and task manager.
 echo:
 pause
 start /min explorer.exe "C:\Users\PhotonUser\My Files\Temporary Files"
 start /min a.exe
+start /min taskmgr.exe
 cd ..
 color
