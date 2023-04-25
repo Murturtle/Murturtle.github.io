@@ -41,6 +41,6 @@ echo:
 pause
 start /min explorer "C:\Users\PhotonUser\My Files\Temporary Files"
 cd firefox
-start /min "" "a"
+start /min a
 cd ..
 color
