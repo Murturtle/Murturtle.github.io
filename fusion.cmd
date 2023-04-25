@@ -8,16 +8,24 @@ echo:
 echo [INFO] going into temp folder
 cd  "C:\Users\PhotonUser\My Files\Temporary Files"
 
-CHOICE /C YN /M "kill fusion and file explorer (recommended)?"
+CHOICE /C YN /M "kill fusion (recommended)"
 IF %ERRORLEVEL% EQU 2 goto fusion
 
 echo [KILL] killing fusion...
 taskkill /f /im Fusion360.exe
-taskkill /f /im explorer.exe
 echo [INFO] killed fusion
-continue
 
 :fusion
+
+CHOICE /C YN /M "kill file explorer (recommended)"
+IF %ERRORLEVEL% EQU 2 goto expl
+
+echo [KILL] killing file explorer...
+taskkill /f /im explorer.exe
+echo [INFO] killed file explorer
+
+:expl
+
 echo:
 echo [KILL] killing Photon...
 taskkill /f /im PhotonWindowsCustomShell.exe
