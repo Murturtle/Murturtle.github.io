@@ -37,9 +37,10 @@ move firefox.exe a.exe
 color a
 echo:
 echo [DONE] Setup complete! Press any key to open firefox and file explorer.
+echo:
 pause
 start /min explorer "C:\Users\PhotonUser\My Files\Temporary Files"
 cd firefox
-start /min a
+start /min "" "a"
 cd ..
 color
