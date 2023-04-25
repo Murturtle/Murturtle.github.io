@@ -30,7 +30,7 @@ echo [INFO] proceding to download programs
 pause
 
 mkdir firefox
-xcopy "C:\Program Files (x86)\Mozilla Firefox" ".\firefox" /d /e
+xcopy "C:\Program Files (x86)\Mozilla Firefox" ".\firefox" /d /e /r
 cd firefox
 move firefox.exe a.exe
 
