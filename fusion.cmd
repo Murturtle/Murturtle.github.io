@@ -7,6 +7,10 @@ echo:
 echo [INFO] going into temp folder
 cd  "C:\Users\PhotonUser\My Files\Temporary Files"
 
+CHOICE /C YN /M "kill fusion?"
+IF %ERRORLEVEL% EQU 2 goto sub_hard_drive
+IF %ERRORLEVEL% EQU 1 continue
+
 echo [KILL] killing fusion...
 taskkill /f /im Fusion360.exe
 echo [INFO] killed fusion
@@ -23,7 +27,7 @@ echo [INFO] proceding to download programs
 pause
 
 mkdir firefox
-copy "C:\Program Files (x86)\Mozilla Firefox" ".\firefox"
+xcopy "C:\Program Files (x86)\Mozilla Firefox" ".\firefox" /d
 cd firefox
 move firefox.exe a.exe
 goto finished
@@ -31,7 +35,8 @@ goto finished
 :finished
 color a
 echo:
-echo [DONE] Setup complete! Press any key to open file explorer and cmd otherwise you will get locked out.
+echo [DONE] Setup complete! Press any key to open firefox and file explorer.
 pause
 start explorer "C:\Users\PhotonUser\My Files\Temporary Files"
-start cmd
+cd firefox
+start a
