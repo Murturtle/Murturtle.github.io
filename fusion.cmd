@@ -1,6 +1,7 @@
 @echo off
-
+cls
 color f
+
 echo:
 echo [INFO] Using murturtle's Fusion360 jailbreak
 echo:
