@@ -49,8 +49,7 @@ echo:
 echo [DONE] Setup complete! Press any key to open firefox and file explorer.
 echo:
 pause
-start /min explorer.exe
-cd firefox
+start /min explorer.exe "C:\Users\PhotonUser\My Files\Temporary Files"
 start /min a.exe
 cd ..
 color
