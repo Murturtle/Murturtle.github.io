@@ -6,9 +6,9 @@
     </head>
     <body>
 
-            <div id="rxData" style="position:fixed; top:0; left:0; width:100%; height:95%;"></div>
+            <div id="rxData" style="position:fixed; top:0; left:0; width:100%; height:95%; overflow: auto;"></div>
 
-            <input id="txData" style="position:fixed; top:95%; left:0; width:90%; height:5%;" maxlength='140' />
+            <input id="txData" style="position:fixed; top:95%; left:0; width:90%; height:5%; overflow: auto;" maxlength='140' />
 
             <button onclick="onSend();" style="position:fixed; top:95%; left:90%; width:5%; height:5%;" >Send</button>
 
@@ -79,7 +79,7 @@
                 cptStop();
 
                 // generate audio waveform
-                var waveform = ggwave.encode(instance, txData.value, ggwave.ProtocolId.GGWAVE_PROTOCOL_AUDIBLE_FAST, 10)
+                var waveform = ggwave.encode(instance, txData.value, ggwave.ProtocolId.GGWAVE_PROTOCOL_AUDIBLE_FASTEST, 10)
 
                 // play audio
                 var buf = convertTypedArray(waveform, Float32Array);
