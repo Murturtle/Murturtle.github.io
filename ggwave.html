@@ -122,9 +122,9 @@
                         var res = ggwave.decode(instance, convertTypedArray(new Float32Array(source.getChannelData(0)), Int8Array));
 
                         if (res && res.length > 0) {
-                            res = new TextDecoder("utf-8").decode(res);
+                            var res = new TextDecoder("utf-8").decode(res);
                             if res.startsWith(">link"){
-                                res = res.split(" ")
+                                res = res.split(" ");
                                 rxData.innerHTML+='<a src='+res[1]+'>'+res[2]+'</a>';
                             } else {
                                 rxData.innerText += res+'\n';
