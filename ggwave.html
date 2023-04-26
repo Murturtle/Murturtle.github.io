@@ -84,6 +84,16 @@
             //
             // Rx
             //
+            function captureStop(){
+                if (recorder) {
+                    recorder.disconnect(context.destination);
+                    mediaStream.disconnect(recorder);
+                    recorder = null;
+                }
+                
+                captureStart.hidden = false;
+                captureStop.hidden = true;
+            };
 
             function captureStart(){
                 init();
@@ -95,7 +105,7 @@
                         autoGainControl: false,
                         noiseSuppression: false
                     }
-                };
+                }
 
                 navigator.mediaDevices.getUserMedia(constraints).then(function (e) {
                     mediaStream = context.createMediaStreamSource(e);
@@ -135,17 +145,6 @@
 
                 captureStart.hidden = true;
                 captureStop.hidden = false;
-            };
-
-            function captureStop() {
-                if (recorder) {
-                    recorder.disconnect(context.destination);
-                    mediaStream.disconnect(recorder);
-                    recorder = null;
-                }
-                
-                captureStart.hidden = false;
-                captureStop.hidden = true;
             };
         </script>
     </body>
