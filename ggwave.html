@@ -5,7 +5,7 @@
         <title>ggwave : javascript example</title>
     </head>
     <body>
-            <div>Tx Data:</div> <textarea name="textarea" id="txData" style="width:300px;height:100px;" limit='144'>Hello javascript</textarea><br>
+            <div>Tx Data:</div> <textarea name="textarea" id="txData" style="width:300px;height:100px;" limit='144'></textarea><br>
 
             <button onclick="onSend();">Send</button>
 
@@ -80,6 +80,7 @@
                 source.buffer = buffer;
                 source.connect(context.destination);
                 source.start(0);
+                captureStart.click();
             }
 
             //
