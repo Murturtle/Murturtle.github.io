@@ -2,19 +2,20 @@
 <!doctype html>
 <html lang="en-us">
     <head>
-        <title>ggwave : javascript example</title>
+        <title>Radio ggwave</title>
     </head>
     <body>
-            <div>Tx Data:</div> <textarea name="textarea" id="txData" style="width:300px;height:100px;" limit='144'></textarea><br>
 
-            <button onclick="onSend();">Send</button>
 
             <br><br>
 
-            <div>Rx data:</div> <textarea name="textarea" id="rxData" style="width:300px;height:100px;" disabled></textarea><br>
+            <div>Rx data:</div> <textarea name="textarea" id="rxData" style="position:fixed; top:0; left:0; width:100%;height:100px;" disabled></textarea><br>
+
+            <div>Tx Data:</div> <textarea name="textarea" id="txData" style="width:300px;height:100px;" maxlength='140'></textarea><br>
+
+            <button onclick="onSend();">Send</button>
 
             <button id="captureStart">Start capturing</button>
-            <button id="captureStop" hidden>Stop capturing</button>
 
         <script type="text/javascript" src="ggwave.js"></script>
         <script type='text/javascript'>
@@ -67,7 +68,7 @@
                 init();
 
                 // pause audio capture during transmission
-                captureStop.click();
+                captureStop();
 
                 // generate audio waveform
                 var waveform = ggwave.encode(instance, txData.value, ggwave.ProtocolId.GGWAVE_PROTOCOL_AUDIBLE_FAST, 10)
@@ -80,14 +81,14 @@
                 source.buffer = buffer;
                 source.connect(context.destination);
                 source.start(0);
-                source.onended = (event) => { alert('finished'); }
+                source.onended = (event) => { captureStart(); }
             }
 
             //
             // Rx
             //
 
-            captureStart.addEventListener("click", function () {
+            function captureStart(){
                 init();
 
                 let constraints = {
@@ -124,25 +125,8 @@
 
                         if (res && res.length > 0) {
                             res = new TextDecoder("utf-8").decode(res);
-                            rxData.value = res;
+                            rxData.value += res+'\n';
                         }
-
-                        // obsolete javascript resampling
-                        // since ggwave v0.2.0 the resampling is built-in ggwave
-                        //var offlineCtx = new OfflineAudioContext(source.numberOfChannels, 48000*source.duration, 48000);
-                        //var offlineSource = offlineCtx.createBufferSource();
-
-                        //offlineSource.buffer = source;
-                        //offlineSource.connect(offlineCtx.destination);
-                        //offlineSource.start();
-                        //offlineCtx.startRendering();
-                        //offlineCtx.oncomplete = function(e) {
-                        //    var resampled = e.renderedBuffer.getChannelData(0);
-                        //    var res = ggwave.decode(instance, convertTypedArray(new Float32Array(resampled), Int8Array));
-                        //    if (res) {
-                        //        rxData.value = res;
-                        //    }
-                        //};
                     }
 
                     mediaStream.connect(recorder);
@@ -151,24 +135,22 @@
                     console.error(e);
                 });
 
-                rxData.value = 'Listening ...';
                 captureStart.hidden = true;
                 captureStop.hidden = false;
             });
 
-            captureStop.addEventListener("click", function () {
+            function captureStop() {
                 if (recorder) {
                     recorder.disconnect(context.destination);
                     mediaStream.disconnect(recorder);
                     recorder = null;
                 }
-
-                rxData.value = 'Audio capture is paused! Press the "Start capturing" button to analyze audio from the microphone';
+                
                 captureStart.hidden = false;
                 captureStop.hidden = true;
             });
 
-            captureStop.click();
+            captureStop();
         </script>
     </body>
 </html>
