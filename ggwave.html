@@ -99,7 +99,7 @@
                 source.buffer = buffer;
                 source.connect(context.destination);
                 source.start(0);
-                source.onended = (event) => {  rxData.innerText+= txData.value+'\n\n'; cptStart(); };
+                source.onended = (event) => {  console.log("Sent"+txData.value); rxData.innerText+= txData.value+'\n\n'; cptStart(); };
             }
 
             //
