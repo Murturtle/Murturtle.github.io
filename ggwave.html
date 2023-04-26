@@ -56,7 +56,7 @@
                     instance = ggwave.init(parameters);
                 }
             }
-            function captureStop(){
+            function cptStop(){
                 if (recorder) {
                     recorder.disconnect(context.destination);
                     mediaStream.disconnect(recorder);
@@ -75,7 +75,7 @@
                 init();
 
                 // pause audio capture during transmission
-                captureStop();
+                cptStop();
 
                 // generate audio waveform
                 var waveform = ggwave.encode(instance, txData.value, ggwave.ProtocolId.GGWAVE_PROTOCOL_AUDIBLE_FAST, 10)
@@ -88,14 +88,14 @@
                 source.buffer = buffer;
                 source.connect(context.destination);
                 source.start(0);
-                source.onended = (event) => { captureStart(); };
+                source.onended = (event) => { cptStart(); };
             }
 
             //
             // Rx
             //
 
-            function captureStart(){
+            function cptStart(){
                 init();
 
                 let constraints = {
