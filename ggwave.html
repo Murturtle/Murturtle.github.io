@@ -123,12 +123,8 @@
 
                         if (res && res.length > 0) {
                             var res = new TextDecoder("utf-8").decode(res);
-                            if res.startsWith(">link"){
-                                res = res.split(" ");
-                                rxData.innerHTML+='<a src='+res[1]+'>'+res[2]+'</a>';
-                            } else {
-                                rxData.innerText += res+'\n';
-                                rxData.scrollTop = rxData.scrollHeight;
+                            rxData.innerText += res+'\n';
+                            rxData.scrollTop = rxData.scrollHeight;
                             }
                         }
                     }
