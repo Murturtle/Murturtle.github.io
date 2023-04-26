@@ -56,6 +56,16 @@
                     instance = ggwave.init(parameters);
                 }
             }
+            function captureStop(){
+                if (recorder) {
+                    recorder.disconnect(context.destination);
+                    mediaStream.disconnect(recorder);
+                    recorder = null;
+                }
+                
+                captureStart.hidden = false;
+                captureStop.hidden = true;
+            };
 
             //
             // Tx
@@ -84,16 +94,6 @@
             //
             // Rx
             //
-            function captureStop(){
-                if (recorder) {
-                    recorder.disconnect(context.destination);
-                    mediaStream.disconnect(recorder);
-                    recorder = null;
-                }
-                
-                captureStart.hidden = false;
-                captureStop.hidden = true;
-            };
 
             function captureStart(){
                 init();
