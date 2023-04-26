@@ -78,7 +78,7 @@
                 source.buffer = buffer;
                 source.connect(context.destination);
                 source.start(0);
-                source.onended = (event) => { captureStart(); }
+                source.onended = (event) => { captureStart(); };
             }
 
             //
@@ -123,6 +123,7 @@
                         if (res && res.length > 0) {
                             res = new TextDecoder("utf-8").decode(res);
                             rxData.value += res+'\n';
+                            rxData.scrollTop = rxData.scrollHeight;
                         }
                     }
 
