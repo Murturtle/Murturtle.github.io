@@ -87,7 +87,7 @@
                 init();
 
                 // pause audio capture during transmission
-                cptStop();
+                
                 send.hidden = true;
                 // generate audio waveform
                 var data = txData.value.match(/.{1,140}/g);
@@ -103,6 +103,7 @@
                         window.setTimeout(check, 100);
                     }else{
                         next = false;
+                        cptStop();
                         var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30);
 
                         // play audio
@@ -113,13 +114,11 @@
                         source.buffer = buffer;
                         source.connect(context.destination);
                         source.start(0);
-                        source.onended = (event) => { next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; rxData.scrollTop = rxData.scrollHeight; };
+                        source.onended = (event) => { cptStart(); next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; rxData.scrollTop = rxData.scrollHeight; };
                     }}
                     check();
                     
                 }
-            cptStart();
-
 
             }
 
