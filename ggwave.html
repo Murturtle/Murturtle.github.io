@@ -102,6 +102,7 @@
                     if (next === false){
                         window.setTimeout(check, 100);
                     }else{
+                        next = false;
                         var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30);
 
                         // play audio
@@ -112,7 +113,7 @@
                         source.buffer = buffer;
                         source.connect(context.destination);
                         source.start(0);
-                        source.onended = (event) => { send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                        source.onended = (event) => { next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
                     }}
                     check();
                 }
