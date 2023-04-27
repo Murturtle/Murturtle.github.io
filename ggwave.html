@@ -92,7 +92,7 @@
                 // generate audio waveform
                 var data = txData.value.match(/.{1,140}/g);
                 var next = true;
-                
+                data[data.lenght]+="\n\n";
                 
                 
                 console.log(data);
@@ -113,11 +113,12 @@
                         source.buffer = buffer;
                         source.connect(context.destination);
                         source.start(0);
-                        source.onended = (event) => { next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                        source.onended = (event) => { next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; rxData.scrollTop = rxData.scrollHeight; };
                     }}
                     check();
+                    
                 }
-
+            cptStart();
 
 
             }
