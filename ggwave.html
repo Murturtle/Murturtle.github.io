@@ -13,7 +13,7 @@
                 border:1px solid white;
              }
         </style>
-        <div id="rxData" style="position:fixed; top:0; left:0; width:100%; height:90%; overflow: auto;"></div>
+        <div id="rxData" style="position:fixed; top:0; left:0; width:100%; height:90%; overflow: auto; background:white; color:black;"></div>
 
         <input id="txData" style="position:fixed; top:90%; left:0; width:100%; height:5%; overflow: auto;" placeholder="Chat">Hi!</input>
 
@@ -92,8 +92,6 @@
                 // generate audio waveform
                 var data = txData.value.match(/.{1,140}/g);
                 var next = true;
-                data[data.lenght]+="\n\n";
-                
                 
                 console.log(data);
                 
@@ -163,7 +161,7 @@
 
                         if (res && res.length > 0) {
                             var res = new TextDecoder("utf-8").decode(res);
-                            rxData.innerText += res;
+                            rxData.innerHtml += res;
                             rxData.scrollTop = rxData.scrollHeight;
                         }
                     }
