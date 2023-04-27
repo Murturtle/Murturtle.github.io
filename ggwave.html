@@ -90,17 +90,19 @@
                 cptStop();
                 send.hidden = true;
                 // generate audio waveform
-                var waveform = ggwave.encode(instance, txData.value, ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30)
+                for i in range(txData.value.match(/.{1,140}/g)){
+                    var waveform = ggwave.encode(instance, txData.value+'\n\n', ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30)
 
-                // play audio
-                var buf = convertTypedArray(waveform, Float32Array);
-                var buffer = context.createBuffer(1, buf.length, context.sampleRate);
-                buffer.getChannelData(0).set(buf);
-                var source = context.createBufferSource();
-                source.buffer = buffer;
-                source.connect(context.destination);
-                source.start(0);
-                source.onended = (event) => { send.hidden = false; console.log("Sent"+txData.value); rxData.innerText+= txData.value+'\n\n'; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                    // play audio
+                    var buf = convertTypedArray(waveform, Float32Array);
+                    var buffer = context.createBuffer(1, buf.length, context.sampleRate);
+                    buffer.getChannelData(0).set(buf);
+                    var source = context.createBufferSource();
+                    source.buffer = buffer;
+                    source.connect(context.destination);
+                    source.start(0);
+                    source.onended = (event) => { send.hidden = false; console.log("Sent"+txData.value); rxData.innerText+= txData.value; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                }
             }
 
             //
@@ -144,7 +146,7 @@
 
                         if (res && res.length > 0) {
                             var res = new TextDecoder("utf-8").decode(res);
-                            rxData.innerText += res+'\n\n';
+                            rxData.innerText += res;
                             rxData.scrollTop = rxData.scrollHeight;
                         }
                     }
