@@ -91,21 +91,30 @@
                 send.hidden = true;
                 // generate audio waveform
                 var data = txData.value.match(/.{1,140}/g);
+                var next = true;
+                
+                
                 
                 console.log(data);
                 
                 for (let step = 0; step < data.length; step++) {
-                  var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30)
+                    function check(){
+                    if (next === false){
+                        window.setTimeout(check, 100);
+                    }else{
+                        var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30);
 
-                // play audio
-                var buf = convertTypedArray(waveform, Float32Array);
-                var buffer = context.createBuffer(1, buf.length, context.sampleRate);
-                buffer.getChannelData(0).set(buf);
-                var source = context.createBufferSource();
-                source.buffer = buffer;
-                source.connect(context.destination);
-                source.start(0);
-                source.onended = (event) => { send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                        // play audio
+                        var buf = convertTypedArray(waveform, Float32Array);
+                        var buffer = context.createBuffer(1, buf.length, context.sampleRate);
+                        buffer.getChannelData(0).set(buf);
+                        var source = context.createBufferSource();
+                        source.buffer = buffer;
+                        source.connect(context.destination);
+                        source.start(0);
+                        source.onended = (event) => { send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                    }}
+                    check();
                 }
 
 
