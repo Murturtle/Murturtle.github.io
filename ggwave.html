@@ -94,7 +94,7 @@
                 
                 console.log(data);
                 
-                for (let step = 1; step < data.length; step++) {
+                for (let step = 0; step < data.length; step++) {
                   var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30)
 
                 // play audio
