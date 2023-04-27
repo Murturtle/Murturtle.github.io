@@ -94,7 +94,7 @@
                 
                 console.log(data);
                 
-                data.forEach(async function (parsed){
+                data.forEach(function (parsed){
                 var waveform = ggwave.encode(instance, parsed, ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30)
 
                 // play audio
@@ -105,7 +105,7 @@
                 source.buffer = buffer;
                 source.connect(context.destination);
                 source.start(0);
-                source.onended = (event) => { send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= parsed; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
+                await source.onended = (event) => { send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= parsed; cptStart(); rxData.scrollTop = rxData.scrollHeight; };
                 })
 
 
