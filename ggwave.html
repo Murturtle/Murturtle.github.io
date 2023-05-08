@@ -78,7 +78,9 @@
             };
             
             function openHTML() {
-                var wind = window.open('','','width=800,height=600').document.body.innerHTML=rxData.innerHTML;
+                var parser = new DOMParser();
+                var html = parser.parseFromString(rxData.value, 'text/html');
+                var wind = window.open('','','width=800,height=600').document.body.innerHTML=html;
             }
 
             //
@@ -113,7 +115,7 @@
                         source.buffer = buffer;
                         source.connect(context.destination);
                         source.start(0);
-                        source.onended = (event) => { next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerHTML+= data[step]; rxData.scrollTop = rxData.scrollHeight; };
+                        source.onended = (event) => { next=true; send.hidden = false; console.log("Sent "+txData.value); rxData.innerText+= data[step]; rxData.scrollTop = rxData.scrollHeight; };
                     }}
                     check();
                     
@@ -162,7 +164,7 @@
 
                         if (res && res.length > 0) {
                             var res = new TextDecoder("utf-8").decode(res);
-                            rxData.innerHTML += res;
+                            rxData.innerText += res;
                             rxData.scrollTop = rxData.scrollHeight;
                         }
                     }
