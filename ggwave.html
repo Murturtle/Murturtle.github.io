@@ -162,7 +162,7 @@
 
                         if (res && res.length > 0) {
                             var res = new TextDecoder("utf-8").decode(res);
-                            rxData.innerText += res;
+                            rxData.innerHTML += res;
                             rxData.scrollTop = rxData.scrollHeight;
                         }
                     }
