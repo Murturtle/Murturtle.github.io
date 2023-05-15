@@ -1,2 +1,2 @@
-/// alert
+/// alert.js
 alert("HI")
