@@ -78,6 +78,7 @@
             };
             
             function openHTML() {
+                var rxData = document.getElementById("rxData");
                 alert(rxData.innerText)
                 var parser = new DOMParser();
                 var htm = parser.parseFromString(rxData.innerText, 'text/html');
