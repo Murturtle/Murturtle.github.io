@@ -93,7 +93,7 @@
                 
                 send.hidden = true;
                 // generate audio waveform
-                var data = txData.value.match(/.{1,140}/g);
+                var data = txData.value.match('{1,140}');
                 var next = true;
                 
                 console.log(data);
@@ -104,7 +104,7 @@
                         window.setTimeout(check, 100);
                     }else{
                         next = false;
-                        var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_DT_FASTEST, 30);
+                        var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_AUDIBLE_FASTEST, 30);
 
                         // play audio
                         var buf = convertTypedArray(waveform, Float32Array);
