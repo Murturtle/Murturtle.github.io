@@ -105,7 +105,7 @@
                         window.setTimeout(check, 100);
                     }else{
                         next = false;
-                        var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_FASTEST, 30);
+                        var waveform = ggwave.encode(instance, data[step], ggwave.ProtocolId.GGWAVE_PROTOCOL_NORMAL_FASTEST, 30);
 
                         // play audio
                         var buf = convertTypedArray(waveform, Float32Array);
