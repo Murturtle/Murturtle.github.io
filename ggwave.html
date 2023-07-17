@@ -78,9 +78,9 @@
             };
             
             function openHTML() {
-                alert(rxData.value)
+                alert(rxData.innerText)
                 var parser = new DOMParser();
-                var htm = parser.parseFromString(rxData.value, 'text/html');
+                var htm = parser.parseFromString(rxData.innerText, 'text/html');
                 var wind = window.open('','','width=800,height=600').document.body.innerHTML=htm;
             }
 
