@@ -80,9 +80,7 @@
             function openHTML() {
                 var rxData = document.getElementById("rxData");
                 alert(rxData.innerText)
-                var parser = new DOMParser();
-                var htm = parser.parseFromString(rxData.innerText, 'text/html');
-                var wind = window.open('','','width=800,height=600').document.body.innerHTML=htm;
+                var wind = window.open('','','width=800,height=600').document.body.innerHTML=rxData.innerText;
             }
 
             //
