@@ -79,8 +79,8 @@
             
             function openHTML() {
                 var parser = new DOMParser();
-                var html = parser.parseFromString(rxData.value, 'text/html');
-                var wind = window.open('','','width=800,height=600').document.body.innerHTML=html;
+                var htm = parser.parseFromString(rxData.value, 'text/html');
+                var wind = window.open('','','width=800,height=600').document.body.innerHTML=htm;
             }
 
             //
