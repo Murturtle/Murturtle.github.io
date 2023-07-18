@@ -93,22 +93,8 @@
                 
                 send.hidden = true;
                 // generate audio waveform
-                var dat = txData.value.split(/./g)
+                var data = txData.value.split(/{1,140}/g)
                 var next = true;
-                const perChunk = 140 // items per chunk   
-                console.log(dat)
-                
-                const result = dat.reduce((resultArray, item, index) => { 
-                  const chunkIndex = Math.floor(index/perChunk)
-                
-                  if(!resultArray[chunkIndex]) {
-                    resultArray[chunkIndex] = [] // start a new chunk
-                  }
-                
-                  resultArray[chunkIndex].push(item)
-                  data = resultArray;
-                  return data
-                }, [])
                 console.log(data);
                 
                 for (let step = 0; step < data.length; step++) {
