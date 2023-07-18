@@ -95,7 +95,8 @@
                 // generate audio waveform
                 var dat = txData.value.split("", 1)
                 var next = true;
-                const perChunk = 140 // items per chunk    
+                const perChunk = 140 // items per chunk   
+                console.log(dat)
                 
                 const result = dat.reduce((resultArray, item, index) => { 
                   const chunkIndex = Math.floor(index/perChunk)
