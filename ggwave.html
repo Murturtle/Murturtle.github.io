@@ -93,7 +93,7 @@
                 
                 send.hidden = true;
                 // generate audio waveform
-                var dat = txData.value.split("", 1)
+                var dat = txData.value.split(/(?!$)/u)
                 var next = true;
                 const perChunk = 140 // items per chunk   
                 console.log(dat)
