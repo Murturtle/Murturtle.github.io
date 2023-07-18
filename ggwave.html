@@ -93,7 +93,7 @@
                 
                 send.hidden = true;
                 // generate audio waveform
-                var data = txData.value.split(/{1,140}/g)
+                var data = txData.value.split(/.{1,140}/u)
                 var next = true;
                 console.log(data);
                 
